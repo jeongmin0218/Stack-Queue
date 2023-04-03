@@ -13,15 +13,15 @@ public class SolutionHM {
                 queue.add((100 - progresses[i]) / speeds[i] + 1);
             }
         }
-
-        int qPoll = queue.poll(); // (앞에 먼저 나온 것)
+        int qPoll = queue.poll(); // 앞에 먼저 나온 것
         int count = 1;
+
         while (!queue.isEmpty()) { // 큐가 빌 때까지 작업
             if (qPoll >= queue.peek()) {
                 // 앞에 나온 것이 뒤에 나온 것보다 크거나 같으면 증가 그리고 queue.poll()
                 count++;
                 queue.poll();
-            } else { // count를 list에 추가하고 1로 초기화, qPoll =q.poll()
+            } else { // 아닐 시 count를 list에 추가하고 1로 초기화, qPoll = q.poll()
                 list.add(count);
                 count = 1;
                 qPoll = queue.poll();
@@ -29,12 +29,11 @@ public class SolutionHM {
         }
         list.add(count); // while 문 탈출 후 마지막 처리 count를 리스트에 추가
 
-        int[] answer = new int [list.size()];
-
-        for (int i = 0; i < answer.length; i++) { // list 출력
-            answer[i] = list.get(i);
+        int[] result = new int [list.size()]; // 리스트 사이즈 만큼 배열크기
+        for (int i = 0; i < result.length; i++) { // list 출력
+            result[i] = list.get(i);
         }
-        return answer;
+        return result;
     }
 }
 
